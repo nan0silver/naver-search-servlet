@@ -12,7 +12,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
-        String searchKeyword = dotenv.get("SEARCH_KEYWORD");
+        String searchKeyword = System.getenv("SEARCH_KEYWORD");
         SearchService searchAPI = new SearchService();
         String filename = "%d_%s";
         String mode = dotenv.get("MODE");

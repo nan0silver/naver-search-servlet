@@ -21,8 +21,8 @@ public class SearchService {
 
     public SearchService() {
         Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
-        this.clientID = dotenv.get("NAVER_CLIENT_ID");
-        this.clientSecret = dotenv.get("NAVER_CLIENT_SECRET");
+        this.clientID = System.getenv("NAVER_CLIENT_ID");
+        this.clientSecret = System.getenv("NAVER_CLIENT_SECRET");
         if (clientID == null || clientSecret == null) {
             throw new RuntimeException("NaverSearchAPI: clientID or clientSecret are missing");
         }
