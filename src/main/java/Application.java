@@ -5,7 +5,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import service.search.SearchService;
-import util.logger.MyLogger;
 
 import java.io.FileOutputStream;
 import java.util.List;
@@ -13,9 +12,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
-        MyLogger logger = new MyLogger(Application.class);
         String searchKeyword = dotenv.get("SEARCH_KEYWORD");
-        logger.info(searchKeyword);
         SearchService searchAPI = new SearchService();
         String filename = "%d_%s";
         String mode = dotenv.get("MODE");
@@ -46,7 +43,7 @@ public class Application {
             }
             workbook.write(fileOut);
         } catch (Exception e) {
-            logger.severe(e.getMessage());
+            System.out.println(e.getMessage());
         }
 
     }

@@ -8,7 +8,6 @@ import model.dto.NaverAPIResultItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import util.api.APIClient;
-import util.logger.MyLogger;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,7 +17,6 @@ public class SearchService {
     private static final Logger log = LogManager.getLogger(SearchService.class);
     private final String clientID;
     private final String clientSecret;
-    private final MyLogger logger;
     private final APIClient apiClient;
 
     public SearchService() {
@@ -28,15 +26,12 @@ public class SearchService {
         if (clientID == null || clientSecret == null) {
             throw new RuntimeException("NaverSearchAPI: clientID or clientSecret are missing");
         }
-        this.logger = new MyLogger(SearchService.class);
         this.apiClient = new APIClient();
 //        logger.info(clientID);
 //        logger.info(clientSecret);
-        logger.info("NaverSearchAPI initailized");
     }
 
     public List<NaverAPIResultItem> searchByKeyword(String keyword) throws IOException, InterruptedException {
-        logger.info("Search by keyword: " + keyword);
         // https://developers.naver.com/docs/serviceapi/search/news/news.md
         HashMap<String, String> body = new HashMap<>();
         APIClientParam param = new APIClientParam(
